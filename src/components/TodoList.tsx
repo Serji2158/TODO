@@ -34,7 +34,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onRemove })
                 onChange={onToggle.bind(null, todo.id)} />
               <span>{todo.title}</span>
               <i
-                className='material-icons purple-text'
+                className='material-icons red-text'
                 onClick={event => removeHandler(event, todo.id)}>
                 delete
               </i>

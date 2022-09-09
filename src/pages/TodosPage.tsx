@@ -6,7 +6,7 @@ import { ITodo } from '../interfaces';
 declare var confirm: (question: string) => boolean
 
 export const TodosPage: React.FC = () => {
-    const [todos, setTodos] = useState<ITodo[]>([])
+  const [todos, setTodos] = useState<ITodo[]>([])
   
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem('todos') || '[]') as ITodo[]
@@ -26,13 +26,25 @@ export const TodosPage: React.FC = () => {
     setTodos(prev => [newTodo, ...prev])
   }
 
-  const toggleHandler = (id: number) => {
-    setTodos(prev => prev.map(todo => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed
-      }
-      return todo
-    }))
+  // const toggleHandler = (id: number) => {
+  //   setTodos(prev => prev.map(todo => {
+  //     if (todo.id === id) {
+  //       todo.completed = !todo.completed
+  //     }
+  //     return todo
+  //   }))
+  // }
+
+    const toggleHandler = (id: number) => {
+    setTodos(todos.map(todo => {
+      if (todo.id !== id) return todo;
+
+      return {
+        ...todo,
+        completed: !todo.completed
+      }      
+    })
+    )
   }
   
   const removeHandler = (id: number) => {
